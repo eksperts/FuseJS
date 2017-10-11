@@ -1,0 +1,56 @@
+<Panel ux:Class="ExercisePage">
+
+	<Panel ux:Class="SelectAnswerButton" Aspect="1" BoxSizing="FillAspect">
+		<string ux:Property="Label" />
+		<bool ux:Property="Answered" />
+		<bool ux:Property="IsCorrect" />
+
+		<Clicked Handler="{selectAnswer}" />
+
+		<Text Value="{ReadProperty Label}" Alignment="Center" FontSize="40" />
+
+		<WhileTrue Value="{ReadProperty Answered}">
+			<WhileTrue Value="{ReadProperty IsCorrect}">
+				<Change bgRect.Color="#7d7" />
+			</WhileTrue>
+			<WhileFalse Value="{ReadProperty IsCorrect}">
+				<Change bgRect.Color="#d77" />
+			</WhileFalse>
+		</WhileTrue>
+
+		<Rectangle ux:Name="bgRect" Color="#eee" CornerRadius="2" />
+	</Panel>
+
+	<WhileTrue Value="{showResult}">
+		<Change results.Visibility="Visible" />
+	</WhileTrue>
+
+	<Text ux:Class="ResultLabel" Alignment="Right" FontSize="32" />
+	<Text ux:Class="ResultValue" Alignment="Left" FontSize="32" />
+
+	<Panel ux:Name="results" Visibility="Collapsed">
+		<StackPanel ItemSpacing="24" Alignment="VerticalCenter">
+			<Grid Columns="2*,1*" CellSpacing="8">
+				<ResultLabel Value="Equations:"/><ResultValue Value="{result.equations}" />
+				<ResultLabel Value="Correct:" Color="#7d7" /><ResultValue Value="{result.correct}" Color="#7d7" />
+				<ResultLabel Value="Incorrect:" Color="#d77" /><ResultValue Value="{result.incorrect}" Color="#d77" />
+			</Grid>
+			<Panel Height="48" Width="120">
+				<Clicked Handler="{restart}" />
+				<Text Value="Try Again" TextColor="#fff" Alignment="Center" />
+				<Rectangle Color="#18f" CornerRadius="2" />
+			</Panel>
+		</StackPanel>
+		<Rectangle Color="#fff" />
+	</Panel>
+
+	<StackPanel Alignment="VerticalCenter" ItemSpacing="8">
+		<Text Value="{equation.label}" Alignment="Center" FontSize="56" />
+		<Grid ColumnCount="2" RowCount="2" CellSpacing="4" Margin="8">
+			<Each Items="{answers}">
+				<SelectAnswerButton Label="{label}" Answered="{answered}" IsCorrect="{correct}" />
+			</Each>
+		</Grid>
+	</StackPanel>
+
+</Panel>

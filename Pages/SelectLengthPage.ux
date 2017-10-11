@@ -1,0 +1,19 @@
+<Panel ux:Class="SelectLengthPage">
+
+	<Panel ux:Class="SelectLengthButton" Aspect="1" BoxSizing="FillAspect">
+		<string ux:Property="Label" />
+		<Clicked Handler="{selectLength}" />
+		<Text Value="{ReadProperty Label}" Alignment="Center" FontSize="32" />
+		<Rectangle Color="#eee" CornerRadius="2" />
+	</Panel>
+
+	<StackPanel Alignment="VerticalCenter" ItemSpacing="8">
+		<Text Value="Exercise length:" Alignment="Center" FontSize="32" />
+		<Grid ColumnCount="2" RowCount="2" CellSpacing="4" Margin="8">
+			<Each Items="{lengths}">
+				<SelectLengthButton Label="{label}" />
+			</Each>
+		</Grid>
+	</StackPanel>
+
+</Panel>

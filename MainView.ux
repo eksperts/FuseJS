@@ -1,0 +1,21 @@
+<App Model="AppES6">
+	<OnBackButton Handler="{goBack}" />
+	<DockPanel>
+		<StatusBarBackground Dock="Top" Background="#18f" />
+		<Panel Height="56" Dock="Top" Color="#18f">
+			<WhileTrue Value="{showResultsButton}">
+				<Panel Width="56" Alignment="Right" HitTestMode="LocalBounds" Clicked="{openResults}">
+					<Text Value="?" TextColor="#fff" FontSize="32" Alignment="Center" />
+				</Panel>
+			</WhileTrue>
+			<Text Value="Bobby Tables" TextColor="#fff" Font="Bold" FontSize="18" Alignment="Center" />
+		</Panel>
+
+		<Navigator Pages="{pages}">
+			<SelectLengthPage ux:Template="SelectLengthPage" />
+			<ExercisePage ux:Template="ExercisePage" />
+			<ResultsPage ux:Template="ResultsPage" />
+		</Navigator>
+
+	</DockPanel>
+</App>

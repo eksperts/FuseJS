@@ -1,0 +1,31 @@
+<DockPanel ux:Class="ResultsPage">
+	<Panel Dock="Top" Height="56">
+		<Panel Height="40" Width="120" Alignment="Center">
+			<Clicked Handler="{clear}" />
+			<Text Value="Clear" TextColor="#fff" Alignment="Center" />
+			<Rectangle Color="#f81" CornerRadius="2" />
+		</Panel>
+	</Panel>
+	<WhileNotEmpty Items="{data}">
+		<ScrollView>
+			<StackPanel ItemSpacing="4" Margin="4">
+				<Each Items="{data}">
+					<StackPanel ItemSpacing="4" Background="#eee">
+						<Grid ColumnCount="2" Margin="8">
+							<Text Value="{date}" Alignment="Center" />
+							<Text Value="{time}" Alignment="Center" />
+						</Grid>
+						<Grid ColumnCount="3" Margin="8">
+							<Text Value="{total}" Alignment="Center" />
+							<Text Value="{correct}" Alignment="Center" TextColor="#2E7D32" />
+							<Text Value="{incorrect}" Alignment="Center" TextColor="#C62828" />
+						</Grid>
+					</StackPanel>
+				</Each>
+			</StackPanel>
+		</ScrollView>
+	</WhileNotEmpty>
+	<WhileEmpty Items="{data}">
+		<Text Value="There are no results" Alignment="Center" />
+	</WhileEmpty>
+</DockPanel>
